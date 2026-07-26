@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="A calm, aesthetic Pomodoro timer and productivity tool designed to help you focus and relax.">
+    <title>AuraFocus — Calm Pomodoro Timer</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="theme-forest">
+    <div class="background-glow"></div>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <i data-lucide="compass" class="logo-icon animate-spin-slow"></i>
+                <h1>AuraFocus</h1>
+            </div>
+
+            <div class="header-actions">
+                <button id="stats-toggle" class="btn-icon" title="View Statistics" aria-label="View Statistics">
+                    <i data-lucide="bar-chart-2"></i>
+                </button>
+                <button id="settings-toggle" class="btn-icon" title="Settings" aria-label="Settings">
+                    <i data-lucide="settings"></i>
+                </button>
+                <div class="theme-selector">
+                    <button class="theme-btn theme-btn-forest active" data-theme="forest" title="Forest Mist"></button>
+                    <button class="theme-btn theme-btn-cherry" data-theme="cherry" title="Cherry Blossom"></button>
+                    <button class="theme-btn theme-btn-ocean" data-theme="ocean" title="Ocean Breeze"></button>
+                    <button class="theme-btn theme-btn-midnight" data-theme="midnight" title="Midnight Calm"></button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Layout Grid -->
+        <main class="app-main">
+            <!-- Left Panel: Ambient Music and Stats (Large screen layout support) -->
+            <section class="panel-left">
+                <!-- Ambient Sounds Card -->
+                <div class="card glass sound-card">
+                    <div class="card-header">
+                        <i data-lucide="music" class="header-icon"></i>
+                        <h2>Ambient Atmosphere</h2>
+                    </div>
+                    <p class="card-subtitle">Mix background sounds to create your ideal space.</p>
+
+                    <div class="sound-controls">
+                        <!-- Sound 1: Rain -->
+                        <div class="sound-row" id="sound-rain">
+                            <button class="sound-toggle" data-sound="rain">
+                                <i data-lucide="cloud-rain"></i>
+                                <span>Soft Rain</span>
+                            </button>
+                            <input type="range" class="sound-volume" min="0" max="1" step="0.05" value="0.5" disabled>
+                        </div>
+
+                        <!-- Sound 2: Forest Wind -->
+                        <div class="sound-row" id="sound-wind">
+                            <button class="sound-toggle" data-sound="wind">
+                                <i data-lucide="wind"></i>
+                                <span>Forest Wind</span>
+                            </button>
+                            <input type="range" class="sound-volume" min="0" max="1" step="0.05" value="0.5" disabled>
+                        </div>
+
+                        <!-- Sound 3: Cafe Chatter -->
+                        <div class="sound-row" id="sound-cafe">
+                            <button class="sound-toggle" data-sound="cafe">
+                                <i data-lucide="coffee"></i>
+                                <span>Quiet Cafe</span>
+                            </button>
+                            <input type="range" class="sound-volume" min="0" max="1" step="0.05" value="0.5" disabled>
+                        </div>
+
+                        <!-- Sound 4: Ocean Waves -->
+                        <div class="sound-row" id="sound-waves">
+                            <button class="sound-toggle" data-sound="waves">
+                                <i data-lucide="waves"></i>
+                                <span>Ocean Waves</span>
+                            </button>
+                            <input type="range" class="sound-volume" min="0" max="1" step="0.05" value="0.5" disabled>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Task Alert / Motivation -->
+                <div class="card glass status-card">
+                    <div class="status-content">
+                        <span class="status-label">Current Focus</span>
+                        <div id="active-task-display" class="active-task-text">No active task selected</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Center Panel: Pomodoro Timer -->
+            <section class="panel-center">
+                <div class="card glass timer-card">
+                    <div class="timer-modes">
+                        <button class="mode-btn active" data-mode="work">Focus</button>
+                        <button class="mode-btn" data-mode="short">Short Break</button>
+                        <button class="mode-btn" data-mode="long">Long Break</button>
+                    </div>
+
+                    <div class="timer-display-container">
+                        <img src="timer.png" alt="Timer" class="timer-illustration">
+                        <svg class="progress-ring" width="280" height="280">
+                            <circle class="progress-ring-bg" stroke="rgba(255, 255, 255, 0.05)" stroke-width="6"
+                                fill="transparent" r="130" cx="140" cy="140" />
+                            <circle id="timer-progress" class="progress-ring-bar" stroke="var(--primary-color)"
+                                stroke-width="8" stroke-linecap="round" fill="transparent" r="130" cx="140" cy="140" />
+                        </svg>
+                        <div class="timer-text">
+                            <span id="time-left">25:00</span>
+                            <span id="timer-status-text" class="timer-subtext">Time to focus</span>
+                        </div>
+                    </div>
+
+                    <div class="timer-controls">
+                        <button id="timer-reset" class="btn-circle btn-secondary" title="Reset Timer"
+                            aria-label="Reset Timer">
+                            <i data-lucide="rotate-ccw"></i>
+                        </button>
+                        <button id="timer-start" class="btn-circle btn-primary" title="Start Timer"
+                            aria-label="Start/Pause Timer">
+                            <i data-lucide="play" id="play-icon"></i>
+                        </button>
+                        <button id="timer-skip" class="btn-circle btn-secondary" title="Skip Session"
+                            aria-label="Skip Session">
+                            <i data-lucide="skip-forward"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Panel: Tasks -->
+            <section class="panel-right">
+                <div class="card glass tasks-card">
+                    <div class="card-header">
+                        <i data-lucide="check-square" class="header-icon"></i>
+                        <h2>Task List</h2>
+                    </div>
+                    <p class="card-subtitle">Select a task to anchor your focus.</p>
+
+                    <form id="task-form" class="task-form">
+                        <input type="text" id="task-input" placeholder="What are you working on?" required
+                            autocomplete="off">
+                        <button type="submit" class="btn-icon-submit" aria-label="Add task">
+                            <i data-lucide="plus"></i>
+                        </button>
+                    </form>
+
+                    <div class="task-list-wrapper">
+                        <ul id="task-list" class="task-list">
+                            <!-- Tasks injected dynamically -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Statistics Modal -->
+    <div id="stats-modal" class="modal">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <h2>Your Journey</h2>
+                <button class="modal-close"><i data-lucide="x"></i></button>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-value" id="stat-sessions">0</span>
+                    <span class="stat-label">Focus Sessions</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" id="stat-minutes">0</span>
+                    <span class="stat-label">Focus Minutes</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-value" id="stat-tasks">0</span>
+                    <span class="stat-label">Completed Tasks</span>
+                </div>
+            </div>
+            <div class="stats-footer">
+                <button id="reset-stats-btn" class="btn-text danger">Reset Statistics</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <h2>Timer Settings</h2>
+                <button class="modal-close"><i data-lucide="x"></i></button>
+            </div>
+            <div class="settings-form">
+                <div class="setting-group">
+                    <label for="settings-work">Focus (Minutes)</label>
+                    <input type="number" id="settings-work" min="1" max="60" value="25">
+                </div>
+                <div class="setting-group">
+                    <label for="settings-short">Short Break (Minutes)</label>
+                    <input type="number" id="settings-short" min="1" max="30" value="5">
+                </div>
+                <div class="setting-group">
+                    <label for="settings-long">Long Break (Minutes)</label>
+                    <input type="number" id="settings-long" min="1" max="60" value="15">
+                </div>
+                <button id="save-settings-btn" class="btn-primary-wide">Apply Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Script -->
+    <script src="app.js"></script>
+</body>
+
+</html>
