@@ -451,20 +451,20 @@ body {
     margin-bottom: 2.5rem;
 }
 
-.timer-illustration {
-    position: absolute;
-    width: 220px;
-    height: 220px;
-    opacity: 0.12;
-    pointer-events: none;
-    z-index: 1;
+.timer-main-image {
+    width: 130px;
+    height: 130px;
     object-fit: contain;
-    transition: opacity var(--transition-speed) var(--transition-ease), transform var(--transition-speed) var(--transition-ease);
+    margin-bottom: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform var(--transition-speed) var(--transition-ease), box-shadow var(--transition-speed) var(--transition-ease);
 }
 
-.timer-card:hover .timer-illustration {
-    opacity: 0.2;
-    transform: scale(1.05);
+.timer-card:hover .timer-main-image {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
 }
 
 .progress-ring {
