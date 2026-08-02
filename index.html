@@ -1,18 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="A calm, aesthetic Pomodoro timer and productivity tool designed to help you focus and relax.">
+=======
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A calm, aesthetic Pomodoro timer and productivity tool designed to help you focus and relax.">
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
     <title>AuraFocus — Calm Pomodoro Timer</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<<<<<<< HEAD
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+=======
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
 </head>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
 <body class="theme-forest">
     <div class="background-glow"></div>
     <div class="app-container">
@@ -22,7 +41,11 @@
                 <i data-lucide="compass" class="logo-icon animate-spin-slow"></i>
                 <h1>AuraFocus</h1>
             </div>
+<<<<<<< HEAD
+
+=======
             
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
             <div class="header-actions">
                 <button id="stats-toggle" class="btn-icon" title="View Statistics" aria-label="View Statistics">
                     <i data-lucide="bar-chart-2"></i>
@@ -50,7 +73,11 @@
                         <h2>Ambient Atmosphere</h2>
                     </div>
                     <p class="card-subtitle">Mix background sounds to create your ideal space.</p>
+<<<<<<< HEAD
+
+=======
                     
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
                     <div class="sound-controls">
                         <!-- Sound 1: Rain -->
                         <div class="sound-row" id="sound-rain">
@@ -60,7 +87,11 @@
                             </button>
                             <input type="range" class="sound-volume" min="0" max="1" step="0.05" value="0.5" disabled>
                         </div>
+<<<<<<< HEAD
+
+=======
                         
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
                         <!-- Sound 2: Forest Wind -->
                         <div class="sound-row" id="sound-wind">
                             <button class="sound-toggle" data-sound="wind">
@@ -69,7 +100,11 @@
                             </button>
                             <input type="range" class="sound-volume" min="0" max="1" step="0.05" value="0.5" disabled>
                         </div>
+<<<<<<< HEAD
+
+=======
                         
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
                         <!-- Sound 3: Cafe Chatter -->
                         <div class="sound-row" id="sound-cafe">
                             <button class="sound-toggle" data-sound="cafe">
@@ -110,16 +145,41 @@
 
                     <div class="timer-display-container">
                         <svg class="progress-ring" width="280" height="280">
+<<<<<<< HEAD
+                            <circle class="progress-ring-bg" stroke="rgba(255, 255, 255, 0.05)" stroke-width="6"
+                                fill="transparent" r="130" cx="140" cy="140" />
+                            <circle id="timer-progress" class="progress-ring-bar" stroke="var(--primary-color)"
+                                stroke-width="8" stroke-linecap="round" fill="transparent" r="130" cx="140" cy="140" />
+                        </svg>
+                        <div class="timer-visual">
+                            <div class="timer-text">
+                                <span id="time-left">25:00</span>
+                                <span id="timer-status-text" class="timer-subtext">Time to focus</span>
+                            </div>
+=======
                             <circle class="progress-ring-bg" stroke="rgba(255, 255, 255, 0.05)" stroke-width="6" fill="transparent" r="130" cx="140" cy="140" />
                             <circle id="timer-progress" class="progress-ring-bar" stroke="var(--primary-color)" stroke-width="8" stroke-linecap="round" fill="transparent" r="130" cx="140" cy="140" />
                         </svg>
                         <div class="timer-text">
                             <span id="time-left">25:00</span>
                             <span id="timer-status-text" class="timer-subtext">Time to focus</span>
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
                         </div>
                     </div>
 
                     <div class="timer-controls">
+<<<<<<< HEAD
+                        <button id="timer-reset" class="btn-circle btn-secondary" title="Reset Timer"
+                            aria-label="Reset Timer">
+                            <i data-lucide="rotate-ccw"></i>
+                        </button>
+                        <button id="timer-start" class="btn-circle btn-primary" title="Start Timer"
+                            aria-label="Start/Pause Timer">
+                            <i data-lucide="play" id="play-icon"></i>
+                        </button>
+                        <button id="timer-skip" class="btn-circle btn-secondary" title="Skip Session"
+                            aria-label="Skip Session">
+=======
                         <button id="timer-reset" class="btn-circle btn-secondary" title="Reset Timer" aria-label="Reset Timer">
                             <i data-lucide="rotate-ccw"></i>
                         </button>
@@ -127,6 +187,7 @@
                             <i data-lucide="play" id="play-icon"></i>
                         </button>
                         <button id="timer-skip" class="btn-circle btn-secondary" title="Skip Session" aria-label="Skip Session">
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
                             <i data-lucide="skip-forward"></i>
                         </button>
                     </div>
@@ -143,7 +204,12 @@
                     <p class="card-subtitle">Select a task to anchor your focus.</p>
 
                     <form id="task-form" class="task-form">
+<<<<<<< HEAD
+                        <input type="text" id="task-input" placeholder="What are you working on?" required
+                            autocomplete="off">
+=======
                         <input type="text" id="task-input" placeholder="What are you working on?" required autocomplete="off">
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
                         <button type="submit" class="btn-icon-submit" aria-label="Add task">
                             <i data-lucide="plus"></i>
                         </button>
@@ -215,4 +281,9 @@
     <!-- App Script -->
     <script src="app.js"></script>
 </body>
+<<<<<<< HEAD
+
 </html>
+=======
+</html>
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
