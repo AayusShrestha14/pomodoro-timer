@@ -451,6 +451,7 @@ body {
     margin-bottom: 2.5rem;
 }
 
+<<<<<<< HEAD
 .timer-visual {
     position: absolute;
     inset: 0;
@@ -483,6 +484,13 @@ body {
     inset: 0;
     transform: rotate(-90deg);
     z-index: 1;
+=======
+.progress-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
 }
 
 .progress-ring-bar {
@@ -494,7 +502,10 @@ body {
     flex-direction: column;
     align-items: center;
     z-index: 2;
+<<<<<<< HEAD
     text-align: center;
+=======
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
 }
 
 #time-left {

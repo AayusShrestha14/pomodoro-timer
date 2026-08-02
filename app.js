@@ -42,6 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const timerStatusText = document.getElementById('timer-status-text');
     const timerProgressBar = document.getElementById('timer-progress');
     const startButton = document.getElementById('timer-start');
+<<<<<<< HEAD
+=======
+    const playIcon = document.getElementById('play-icon');
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
     const resetButton = document.getElementById('timer-reset');
     const skipButton = document.getElementById('timer-skip');
     const modeButtons = document.querySelectorAll('.mode-btn');
@@ -99,7 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const output = noiseBuffer.getChannelData(0);
         let b0, b1, b2, b3, b4, b5, b6;
         b0 = b1 = b2 = b3 = b4 = b5 = b6 = 0.0;
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
         for (let i = 0; i < bufferSize; i++) {
             const white = Math.random() * 2 - 1;
             b0 = 0.99886 * b0 + white * 0.0555179;
@@ -123,7 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function playAlertChime() {
         initAudioContext();
         const now = audioCtx.currentTime;
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
         // Base fundamental gong sound
         const osc1 = audioCtx.createOscillator();
         const osc2 = audioCtx.createOscillator();
@@ -156,7 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
         rain: {
             start: () => {
                 const noise = createPinkNoiseNode();
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
                 // Bandpass filter to shape the rain frequency spectrum
                 const filter = audioCtx.createBiquadFilter();
                 filter.type = 'bandpass';
@@ -183,7 +199,11 @@ document.addEventListener('DOMContentLoaded', () => {
         wind: {
             start: () => {
                 const noise = createPinkNoiseNode();
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
                 // Bandpass filter with shifting frequency to simulate wind gusts
                 const filter = audioCtx.createBiquadFilter();
                 filter.type = 'bandpass';
@@ -216,7 +236,11 @@ document.addEventListener('DOMContentLoaded', () => {
         waves: {
             start: () => {
                 const noise = createPinkNoiseNode();
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
                 // Lowpass filter modulated by LFO to simulate rolling ocean waves
                 const filter = audioCtx.createBiquadFilter();
                 filter.type = 'lowpass';
@@ -248,7 +272,11 @@ document.addEventListener('DOMContentLoaded', () => {
             start: () => {
                 // Synthesize cafe room atmosphere using low frequency murmurs + soft pitch pulses
                 const noise = createPinkNoiseNode();
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
                 const bandpass = audioCtx.createBiquadFilter();
                 bandpass.type = 'bandpass';
                 bandpass.frequency.value = 250; // human vocal frequencies rumble
@@ -264,11 +292,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     const osc = audioCtx.createOscillator();
                     osc.type = 'sine';
                     osc.frequency.value = f;
+<<<<<<< HEAD
 
                     // Modulate volume slightly
                     const oscGain = audioCtx.createGain();
                     oscGain.gain.value = 0.01;
 
+=======
+                    
+                    // Modulate volume slightly
+                    const oscGain = audioCtx.createGain();
+                    oscGain.gain.value = 0.01;
+                    
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
                     osc.connect(oscGain);
                     oscGain.connect(gain);
                     osc.start();
@@ -287,17 +323,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleSoundToggle(soundKey, volumeSlider, row) {
         initAudioContext();
+<<<<<<< HEAD
 
         if (activeSynthesizers[soundKey]) {
             // Stop sound
             activeSynthesizers[soundKey].nodes.forEach(node => {
                 try { node.stop(); } catch (e) { }
                 try { node.disconnect(); } catch (e) { }
+=======
+        
+        if (activeSynthesizers[soundKey]) {
+            // Stop sound
+            activeSynthesizers[soundKey].nodes.forEach(node => {
+                try { node.stop(); } catch(e) {}
+                try { node.disconnect(); } catch(e) {}
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
             });
             delete activeSynthesizers[soundKey];
             volumeSlider.disabled = true;
             row.classList.remove('active');
         } else {
+<<<<<<< HEAD
             // Stop all currently active sounds first
             Object.keys(activeSynthesizers).forEach(key => {
                 activeSynthesizers[key].nodes.forEach(node => {
@@ -314,6 +360,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (slider) slider.disabled = true;
             });
 
+=======
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
             // Start sound
             const synth = soundSynthesizers[soundKey].start();
             // Set initial volume based on slider
@@ -360,7 +408,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const minutes = Math.floor(secondsLeft / 60);
         const seconds = secondsLeft % 60;
         const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
         timeLeftDisplay.textContent = formattedTime;
         document.title = `(${formattedTime}) AuraFocus`;
 
@@ -397,11 +449,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         totalSecondsForMode = secondsLeft;
         updateDisplay();
+<<<<<<< HEAD
         updatePlayPauseIcon('play');
     }
 
     function updatePlayPauseIcon(iconName) {
         startButton.innerHTML = `<i data-lucide="${iconName}"></i>`;
+=======
+        playIcon.setAttribute('data-lucide', 'play');
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
         lucide.createIcons();
     }
 
@@ -410,12 +466,22 @@ document.addEventListener('DOMContentLoaded', () => {
             // Pause
             clearInterval(timerInterval);
             isRunning = false;
+<<<<<<< HEAD
             updatePlayPauseIcon('play');
+=======
+            playIcon.setAttribute('data-lucide', 'play');
+            lucide.createIcons();
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
         } else {
             // Start
             initAudioContext();
             isRunning = true;
+<<<<<<< HEAD
             updatePlayPauseIcon('pause');
+=======
+            playIcon.setAttribute('data-lucide', 'pause');
+            lucide.createIcons();
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
 
             timerInterval = setInterval(() => {
                 if (secondsLeft > 0) {
@@ -469,7 +535,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function skipSession() {
         clearInterval(timerInterval);
         isRunning = false;
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
         if (currentMode === 'work') {
             switchMode('short');
         } else if (currentMode === 'short') {
@@ -496,7 +566,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     function renderTasks() {
         taskList.innerHTML = '';
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
         if (tasks.length === 0) {
             taskList.innerHTML = `<li class="card-subtitle" style="text-align: center; margin-top: 1rem;">No tasks yet. Add one below!</li>`;
             return;
@@ -532,7 +606,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             taskList.appendChild(li);
         });
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
         lucide.createIcons();
     }
 
@@ -553,7 +631,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const taskIndex = tasks.findIndex(t => t.id === id);
         if (taskIndex > -1) {
             tasks[taskIndex].completed = !tasks[taskIndex].completed;
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
             // If completed, update completed task counts
             if (tasks[taskIndex].completed) {
                 stats.tasks += 1;
@@ -569,7 +651,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (id === activeTaskId) {
                 selectActiveTask(null);
             }
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
             saveTasks();
             renderTasks();
         }
@@ -596,12 +682,20 @@ document.addEventListener('DOMContentLoaded', () => {
             tasks.push(newTask);
             saveTasks();
             renderTasks();
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
             // Auto select active if none
             if (!activeTaskId) {
                 selectActiveTask(newTask.id);
             }
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
             taskInput.value = '';
         }
     });
