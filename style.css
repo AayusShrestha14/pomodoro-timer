@@ -202,10 +202,21 @@ body {
     transform: scale(1.1);
 }
 
-.theme-btn-forest { background-color: #81c784; }
-.theme-btn-cherry { background-color: #f48fb1; }
-.theme-btn-ocean { background-color: #81d4fa; }
-.theme-btn-midnight { background-color: #b388ff; }
+.theme-btn-forest {
+    background-color: #81c784;
+}
+
+.theme-btn-cherry {
+    background-color: #f48fb1;
+}
+
+.theme-btn-ocean {
+    background-color: #81d4fa;
+}
+
+.theme-btn-midnight {
+    background-color: #b388ff;
+}
 
 /* Grid layout */
 .app-main {
@@ -220,6 +231,7 @@ body {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
     }
+
     .app-container {
         padding: 1rem;
     }
@@ -233,9 +245,9 @@ body {
     border: 1px solid var(--glass-border);
     border-radius: 24px;
     box-shadow: 0 16px 40px var(--glass-shadow);
-    transition: background var(--transition-speed) var(--transition-ease), 
-                border var(--transition-speed) var(--transition-ease),
-                box-shadow var(--transition-speed) var(--transition-ease);
+    transition: background var(--transition-speed) var(--transition-ease),
+        border var(--transition-speed) var(--transition-ease),
+        box-shadow var(--transition-speed) var(--transition-ease);
 }
 
 .card {
@@ -270,7 +282,8 @@ body {
 }
 
 /* Panel Layout Helpers */
-.panel-left, .panel-right {
+.panel-left,
+.panel-right {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -451,7 +464,6 @@ body {
     margin-bottom: 2.5rem;
 }
 
-<<<<<<< HEAD
 .timer-visual {
     position: absolute;
     inset: 0;
@@ -484,13 +496,6 @@ body {
     inset: 0;
     transform: rotate(-90deg);
     z-index: 1;
-=======
-.progress-ring {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: rotate(-90deg);
->>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
 }
 
 .progress-ring-bar {
@@ -502,10 +507,7 @@ body {
     flex-direction: column;
     align-items: center;
     z-index: 2;
-<<<<<<< HEAD
     text-align: center;
-=======
->>>>>>> 347fdf9a0634fc07b13a5335831c879b231d2237
 }
 
 #time-left {
@@ -966,6 +968,7 @@ body {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
