@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const timerStatusText = document.getElementById('timer-status-text');
     const timerProgressBar = document.getElementById('timer-progress');
     const startButton = document.getElementById('timer-start');
-    const playIcon = document.getElementById('play-icon');
     const resetButton = document.getElementById('timer-reset');
     const skipButton = document.getElementById('timer-skip');
     const modeButtons = document.querySelectorAll('.mode-btn');
@@ -100,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const output = noiseBuffer.getChannelData(0);
         let b0, b1, b2, b3, b4, b5, b6;
         b0 = b1 = b2 = b3 = b4 = b5 = b6 = 0.0;
-
         for (let i = 0; i < bufferSize; i++) {
             const white = Math.random() * 2 - 1;
             b0 = 0.99886 * b0 + white * 0.0555179;
@@ -124,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function playAlertChime() {
         initAudioContext();
         const now = audioCtx.currentTime;
-
         // Base fundamental gong sound
         const osc1 = audioCtx.createOscillator();
         const osc2 = audioCtx.createOscillator();
@@ -157,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
         rain: {
             start: () => {
                 const noise = createPinkNoiseNode();
-
                 // Bandpass filter to shape the rain frequency spectrum
                 const filter = audioCtx.createBiquadFilter();
                 filter.type = 'bandpass';
@@ -184,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
         wind: {
             start: () => {
                 const noise = createPinkNoiseNode();
-
                 // Bandpass filter with shifting frequency to simulate wind gusts
                 const filter = audioCtx.createBiquadFilter();
                 filter.type = 'bandpass';
@@ -217,7 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
         waves: {
             start: () => {
                 const noise = createPinkNoiseNode();
-
                 // Lowpass filter modulated by LFO to simulate rolling ocean waves
                 const filter = audioCtx.createBiquadFilter();
                 filter.type = 'lowpass';
@@ -249,7 +243,6 @@ document.addEventListener('DOMContentLoaded', () => {
             start: () => {
                 // Synthesize cafe room atmosphere using low frequency murmurs + soft pitch pulses
                 const noise = createPinkNoiseNode();
-
                 const bandpass = audioCtx.createBiquadFilter();
                 bandpass.type = 'bandpass';
                 bandpass.frequency.value = 250; // human vocal frequencies rumble
@@ -299,6 +292,22 @@ document.addEventListener('DOMContentLoaded', () => {
             volumeSlider.disabled = true;
             row.classList.remove('active');
         } else {
+            // Stop all currently active sounds first
+            Object.keys(activeSynthesizers).forEach(key => {
+                activeSynthesizers[key].nodes.forEach(node => {
+                    try { node.stop(); } catch (e) { }
+                    try { node.disconnect(); } catch (e) { }
+                });
+                delete activeSynthesizers[key];
+            });
+
+            // Reset UI for all rows
+            soundRows.forEach(r => {
+                r.classList.remove('active');
+                const slider = r.querySelector('.sound-volume');
+                if (slider) slider.disabled = true;
+            });
+
             // Start sound
             const synth = soundSynthesizers[soundKey].start();
             // Set initial volume based on slider
@@ -345,7 +354,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const minutes = Math.floor(secondsLeft / 60);
         const seconds = secondsLeft % 60;
         const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
         timeLeftDisplay.textContent = formattedTime;
         document.title = `(${formattedTime}) AuraFocus`;
 
@@ -382,7 +390,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         totalSecondsForMode = secondsLeft;
         updateDisplay();
-        playIcon.setAttribute('data-lucide', 'play');
+        updatePlayPauseIcon('play');
+    }
+
+    function updatePlayPauseIcon(iconName) {
+        startButton.innerHTML = `<i data-lucide="${iconName}"></i>`;
         lucide.createIcons();
     }
 
@@ -391,14 +403,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Pause
             clearInterval(timerInterval);
             isRunning = false;
-            playIcon.setAttribute('data-lucide', 'play');
-            lucide.createIcons();
+            updatePlayPauseIcon('play');
         } else {
             // Start
             initAudioContext();
             isRunning = true;
-            playIcon.setAttribute('data-lucide', 'pause');
-            lucide.createIcons();
+            updatePlayPauseIcon('pause');
 
             timerInterval = setInterval(() => {
                 if (secondsLeft > 0) {
@@ -452,7 +462,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function skipSession() {
         clearInterval(timerInterval);
         isRunning = false;
-
         if (currentMode === 'work') {
             switchMode('short');
         } else if (currentMode === 'short') {
@@ -479,7 +488,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     function renderTasks() {
         taskList.innerHTML = '';
-
         if (tasks.length === 0) {
             taskList.innerHTML = `<li class="card-subtitle" style="text-align: center; margin-top: 1rem;">No tasks yet. Add one below!</li>`;
             return;
@@ -515,7 +523,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             taskList.appendChild(li);
         });
-
         lucide.createIcons();
     }
 
@@ -536,7 +543,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const taskIndex = tasks.findIndex(t => t.id === id);
         if (taskIndex > -1) {
             tasks[taskIndex].completed = !tasks[taskIndex].completed;
-
             // If completed, update completed task counts
             if (tasks[taskIndex].completed) {
                 stats.tasks += 1;
@@ -552,7 +558,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (id === activeTaskId) {
                 selectActiveTask(null);
             }
-
             saveTasks();
             renderTasks();
         }
@@ -579,12 +584,10 @@ document.addEventListener('DOMContentLoaded', () => {
             tasks.push(newTask);
             saveTasks();
             renderTasks();
-
             // Auto select active if none
             if (!activeTaskId) {
                 selectActiveTask(newTask.id);
             }
-
             taskInput.value = '';
         }
     });

@@ -27,7 +27,6 @@
                 <i data-lucide="compass" class="logo-icon animate-spin-slow"></i>
                 <h1>AuraFocus</h1>
             </div>
-
             <div class="header-actions">
                 <button id="stats-toggle" class="btn-icon" title="View Statistics" aria-label="View Statistics">
                     <i data-lucide="bar-chart-2"></i>
@@ -55,7 +54,6 @@
                         <h2>Ambient Atmosphere</h2>
                     </div>
                     <p class="card-subtitle">Mix background sounds to create your ideal space.</p>
-
                     <div class="sound-controls">
                         <!-- Sound 1: Rain -->
                         <div class="sound-row" id="sound-rain">
@@ -65,7 +63,6 @@
                             </button>
                             <input type="range" class="sound-volume" min="0" max="1" step="0.05" value="0.5" disabled>
                         </div>
-
                         <!-- Sound 2: Forest Wind -->
                         <div class="sound-row" id="sound-wind">
                             <button class="sound-toggle" data-sound="wind">
@@ -74,7 +71,6 @@
                             </button>
                             <input type="range" class="sound-volume" min="0" max="1" step="0.05" value="0.5" disabled>
                         </div>
-
                         <!-- Sound 3: Cafe Chatter -->
                         <div class="sound-row" id="sound-cafe">
                             <button class="sound-toggle" data-sound="cafe">
@@ -120,9 +116,11 @@
                             <circle id="timer-progress" class="progress-ring-bar" stroke="var(--primary-color)"
                                 stroke-width="8" stroke-linecap="round" fill="transparent" r="130" cx="140" cy="140" />
                         </svg>
-                        <div class="timer-text">
-                            <span id="time-left">25:00</span>
-                            <span id="timer-status-text" class="timer-subtext">Time to focus</span>
+                        <div class="timer-visual">
+                            <div class="timer-text">
+                                <span id="time-left">25:00</span>
+                                <span id="timer-status-text" class="timer-subtext">Time to focus</span>
+                            </div>
                         </div>
                     </div>
 
